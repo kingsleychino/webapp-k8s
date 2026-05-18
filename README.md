@@ -2,24 +2,27 @@
 
 ## Secret Management
 
-## Repository Structure
+## Project Structure
 
+```bash
 webapp-k8s/
-├── base/                          
+├── base/
 │   ├── deployment.yaml
-│   ├── kustomization.yaml            
-│   └── service.yaml   
+│   ├── kustomization.yaml
+│   └── service.yaml
 │
 └── overlays/
-    ├── production/                  
+    ├── production/
     │   ├── kustomization.yaml
-    │   ├── namespace.yaml         
-    │   ├── replica_patch.yaml
+    │   ├── namespace.yaml
+    │   └── replica_patch.yaml
     │
-    └── staging/        
+    └── staging/
         ├── kustomization.yaml
-        ├── namespace.yaml     
+        ├── namespace.yaml
         └── replica_patch.yaml
+
+```
 
 
 **Chosen approach for this exercise:** Kustomize `secretGenerator` with literals.
