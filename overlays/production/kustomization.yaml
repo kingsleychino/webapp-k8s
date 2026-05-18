@@ -1,0 +1,23 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+namespace: production
+
+resources:
+- ../../base
+- namespace.yaml
+
+patches:
+- path: replica_patch.yaml
+
+images:
+- name: nginx
+  newTag: "1.27" 
+
+secretGenerator:
+- name: webapp-secret
+  literals:
+  - DB_PASSWORD=prod-db-pass
+  - API_KEY=prod-api-key-456
+  options:
+    disableNameSuffixHash: true

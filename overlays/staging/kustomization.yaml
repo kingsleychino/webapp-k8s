@@ -1,0 +1,23 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+namespace: staging
+
+resources:
+- ../../base
+- namespace.yaml
+
+patches:
+- path: replica_patch.yaml
+
+images:
+- name: nginx
+  newTag: "1.25"  
+
+secretGenerator:
+- name: webapp-secret
+  literals:
+  - DB_PASSWORD=staging-db-pass
+  - API_KEY=staging-api-key-123
+  options:
+    disableNameSuffixHash: true
